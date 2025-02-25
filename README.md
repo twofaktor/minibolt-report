@@ -1,4 +1,4 @@
-Displays a summary (warnings, errors, etc...) of your raspibolt's environment.
+Displays a summary (warnings, errors, etc...) of your MiniBolt/RaMiX's environment.
 
 # Contents
 
@@ -43,7 +43,7 @@ Integer. Default: 48 (hours). The value will be saved in the variable `hoursAgo`
 Look for events in the last day:
 
 ```sh
-$ sudo bash report.sh 24
+sudo bash report.sh 24
 ```
 
 <img alt="Greeting" src="./static/greeting.png" with="380" />
@@ -60,25 +60,25 @@ Active sessions will we marked in red as well.
 
 Command used to access the logs (see `hoursAgo` in [Arguments](#arguments)):
 
-```
-$ last -R -s "-${hoursAgo}hours"
+```sh
+last -R -s "-${hoursAgo}hours"
 ```
 
 <img alt="Login sessions" src="./static/login_sessions.png" with="800" />
 
-## Failed login attemps
+## Failed login attempts
 
 Log entries that match the RegExp `Failed|Failure|preauth|Connection closed` will be displayed.
 
 Command used to access the logs:
 
-```
-$ cat /var/log/auth.log
+```sh
+cat /var/log/auth.log
 ```
 
 <img alt="Failed login attemps" src="./static/failed_login_attemps.png" with="763" />
 
-## Succeeded login attemps
+## Succeeded login attempts
 
 Log entries that match the RegExp `New session|Accepted password|Accepted publickey` will be displayed.
 
@@ -86,8 +86,8 @@ If a successful connection using a password is detected, a warning message will 
 
 Command used to access the logs:
 
-```
-$ cat /var/log/auth.log
+```sh
+cat /var/log/auth.log
 ```
 
 <img alt="Succeeded login attemps" src="./static/succeeded_login_attemps.png" with="1244" />
@@ -100,14 +100,14 @@ If the file `/etc/fail2ban/fail2ban.conf` is not found in your system, a warning
 
 Command used to access the logs:
 
-```
-$ cat /var/log/fail2ban.log
+```sh
+cat /var/log/fail2ban.log
 ```
 
 Additionally, statistics about failed and banned actions will be displayed:
 
-```
-$ sudo fail2ban-client status sshd
+```sh
+sudo fail2ban-client status sshd
 ```
 
 <img alt="Fail2ban actions" src="./static/fail2ban.png" with="781" />
@@ -120,8 +120,8 @@ If the file `/etc/ufw/ufw.conf` is not found in your system, a warning message w
 
 Command used to access the logs:
 
-```
-$ cat /var/log/ufw.log
+```sh
+cat /var/log/ufw.log
 ```
 
 <img alt="Firewall connection attempts" src="./static/firewall.png" with="750" />
@@ -132,8 +132,8 @@ Log entries that match the RegExp `error|warn(ing)?` will be displayed.
 
 Command used to access the logs (see `pathBitcoin` in [Bitcoin's path](#bitcoins-path)):
 
-```
-$ cat "${pathBitcoin}debug.log
+```sh
+cat "${pathBitcoin}debug.log
 ```
 
 <img alt="Bitcoin Core" src="./static/bitcoin_core.png" with="800" />
@@ -144,8 +144,8 @@ Log entries that match the RegExp `error|warn(ing)?` will be displayed.
 
 Command used to access the logs (see `hoursAgo` in [Arguments](#arguments)):
 
-```
-$ journalctl -u electrs --since="${hoursAgo} hours ago"
+```sh
+journalctl -u electrs --since="${hoursAgo} hours ago"
 ```
 
 <img alt="Electrum Server" src="./static/electrum_server.png" with="750" />
@@ -156,8 +156,8 @@ Entries that match the RegExp `^HiddenServiceDir` will be displayed.
 
 Command used to access tor configuration:
 
-```
-$ cat /etc/tor/torrc
+```sh
+cat /etc/tor/torrc
 ```
 
 <img alt="Tor Hidden Services" src="./static/tor_hidden_services.png" with="750" />
@@ -168,8 +168,8 @@ Services that failed to start.
 
 Command used:
 
-```
-$ systemctl list-units --failed
+```sh
+systemctl list-units --failed
 ```
 
 <img alt="Services Failed To Start" src="./static/services_failed_start.png" with="1150" />
